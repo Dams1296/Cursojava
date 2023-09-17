@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miel y Mantequilla</title>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta name="description" content="Checa nuestro menú">}
+    <meta name="keywords" content="Menu, hotcakes, waffles, precio, souffle">
+</head>
+<body class="menu vh-100 overflow-y-scroll overflow-x-hidden">
+
+    <header>
+        <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../assets/img/mielymantequillalogo2.svg" width="10%" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header text-black border-bottom">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="menu.html">Menú</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="sucursales.html">Sucursales</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main class="main-menu">
+        <section class="section-1">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div  class="souffle">
+                            <img src="../assets/img/souffle.jpg" alt="souffle">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <div class="panel text-center" >
+                            <h2>Pide tus pancakes al gusto</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section-menu">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-12 mt-5 mb-3">
+                        <h3 class="mb-5">Hotcakes, waffles y souffles</h3>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4 col-12 text-center">
+                        <div class="card mr-2 d-inline-block shadow-lg" >
+                            <div class="card-img-top">
+                                <img src="../assets/img/hotcakes.jpg" alt="hotcakes">
+                            </div>
+                            <div class="card-body">
+                                    <h3 class="card-title">Hotcakes</h3>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-12 text-center">
+                        <div class="card mr-2 d-inline-block shadow-lg" >
+                            <div class="card-img-top">
+                               <img src="../assets/img/souffle.jpg" alt="soufle">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Soufle</h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 col-12 text-center">
+                        <div class="card mr-2 d-inline-block shadow-lg" >
+                            <div class="card-img-top">
+                                <img src="../assets/img/waffles.jpg" alt="waffles">
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title">Waffles</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 m-5 text-center">
+                        <button type="button" id="botonComprar" onclick="comprar()"> Comprar </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        
+    </main>
+
+    <Footer name="footer" id="footer">
+        <div class="container-fluid p-0 pt-3">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="column">
+                        <img src="../assets/img/facebookicon.png" alt="icono facebook" width="30px">
+                        <img src="../assets/img/instagramicon.png" alt="icono instagram" width="30px">
+                        <img src="../assets/img/twittericon.png" alt="icono twiiter" width="30px">
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            
+        <div class="row text-center">
+            <div class="col-md-12 pt-3">
+                <h2 class="text-center"> Miel y Mantequilla</h2>
+                <p id="copyright">Copyright, 2023</p>
+            </div>
+        </div>   
+        
+        <div class="row justify-content-md-center text-center">
+            <div class="col-md-2">
+                <p class="pt-0" id="copyright">Información legal</p>
+            </div>
+            <div class="col-md-2">
+                <p class="pt-0" id="copyright">Aviso de privacidad</p>
+            </div>
+               
+        </div>   
+    </Footer>
+    <script src="../assets/js/miel.js"></script>
+</body>
+</html>

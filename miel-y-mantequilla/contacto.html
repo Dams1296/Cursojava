@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miel y Mantequilla</title>
+    <script src="../assets/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../assets/css/bootstrap.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <meta name="description" content="Por estos medios pueden pedir una reservación!">
+    <meta name="keywords" content="Contacto, reservación, menu, miel y Mantequilla, hotcakes">
+</head>
+<body class="contact vh-100 overflow-y-scroll overflow-x-hidden">
+
+    <header>
+        <nav class="navbar navbar-expand-md bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+            <a class="navbar-brand" href="#"><img src="../assets/img/mielymantequillalogo2.svg" width="10%" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header text-black border-bottom">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Menu</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item mx-2">
+                        <a class="nav-link active" aria-current="page" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="menu.html">Menú</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="sucursales.html">Sucursales</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                            <a class="nav-link" href="nosotros.html">Nosotros</a>
+                    </li>
+                    <li class="nav-item mx-2">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                </ul>
+                </div>
+            </div>
+            </div>
+      </nav>
+    </header>
+
+    <main>
+        <section class="sectionTable">
+            <div class="container">
+                <form class="formulario">
+                    <fieldset class="fieldset">
+                        <legend>Reservación</legend>
+                        <table class="tabla">
+                            <tr>
+                                <td>
+                                    <div>
+                                        <label for="nombre_apellido">Nombre</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form_field" id="nombre_apellido">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label for="correo">Correo</label>
+                                    </div>
+                                    <div>
+                                        <input type="email" class="form_field" id="correo">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <label for="personas">Personas</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form_field" id="personas">
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <div>
+                                        <label for="fecha">Fecha</label>
+                                    </div>
+                                    <div>  
+                                        <input type="date" class="form_field" id="fecha">
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <div>
+                                        <label for="hora">Hora</label>
+                                    </div>
+                                    <div>
+                                        <input type="text" class="form_field" id="hora">
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                    <div>
+                                        <label for="celular">Celular</label>
+                                    </div>
+                                    <div>
+                                        <input type="tel" class="form_field" id="celular">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <select name="lugares" class="form_field">
+                                        <option value="M" id="Monterrey">Monterrey</option>
+                                        <option value="CDMX" id="Ciudad-de-Mexico">Ciudad de México</option>
+                                        <option value="G" id="Guadalajara">Guadalajara</option>
+                                        <option value="C" id="Cancun">Cancún</option>
+                                        <option value="P" id="Puebla">Puebla</option>
+                                
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="enviar">
+                            <input type="button" class="form_field enviar" value="Enviar reservación">
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <Footer name="footer" id="footer">
+        <div class="container-fluid p-0 pt-3">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="column">
+                        <img src="../assets/img/facebookicon.png" alt="icono facebook" width="30px">
+                        <img src="../assets/img/instagramicon.png" alt="icono instagram" width="30px">
+                        <img src="../assets/img/twittericon.png" alt="icono twiiter" width="30px">
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+            
+        <div class="row text-center">
+            <div class="col-md-12 pt-3">
+                <h2 class="text-center"> Miel y Mantequilla</h2>
+                <p id="copyright">Copyright, 2023</p>
+            </div>
+        </div>   
+        
+        <div class="row justify-content-md-center text-center">
+            <div class="col-md-2">
+                <p class="pt-0" id="copyright">Información legal</p>
+            </div>
+            <div class="col-md-2">
+                <p class="pt-0" id="copyright">Aviso de privacidad</p>
+            </div>
+               
+        </div>   
+    </Footer>
+    
+</body>
+</html>
