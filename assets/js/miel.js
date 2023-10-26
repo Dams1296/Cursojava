@@ -31,16 +31,36 @@ const baseDeDatos = [
 
 const divisa = '$';
 
-const styleBtn = `
+
+const styleCardBuy = `
     font-family: "Courgette";
-    font-size: 1vmin;
-    width: 4rem;
-    height: 3vmin;
+    font-size: 6vmin;
+    width: 10rem;
+    height: 22vmin;
     border-radius: 2px;
     background-color: rgb(233, 153, 48);
+    cursor: pointer;
+    marging: 1.5vmin`;
+    
+
+const styleBtn = `
+    font-family: "Courgette";
+    font-size: 6vmin;
+    font-weight: 600;
+    font-color: white;
+    width: 3rem;
+    height: 8vmin;
+    border-radius: 2px;
+    background-color: rgb(233, 153, 48);
+    align-items: center;
+    justify-content: center;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
     cursor: pointer`;
+    
 
-
+let carrito = []
 
 function comprar() {
     
@@ -50,25 +70,136 @@ function comprar() {
     console.log(prueba)
     let i = 0
     baseDeDatos.forEach((info) => {
-    let contenedor = document.createElement("div")
-    contenedor.classList.add("card", "m-2", "shadow-lg")
-    let btn = document.createElement("button")
-    btn.classList.add("btn", "btn-primary")
-    btn.textContent= "+"
-    btn.style.cssText =styleBtn
-    contenedor.innerHTML = `<h4> ${info.nombre}</h4>
-                            <p> Precio: $${info.precio}</p>`;
+    let contenedor1 = document.createElement("div")
+    contenedor1.classList.add("row", "text-center")
+
+    let contenedor11 = document.createElement("div")
+    contenedor11.classList.add("col", "m-1", "pt-4", "pb-1", "tex-center")
+    contenedor11.innerHTML = `<b> Precio: $${info.precio}</b>`;
     
-    console.log(info)
-    prueba[i].appendChild(contenedor)
-    prueba[i].appendChild(btn)
+    let contenedor2 = document.createElement("div")
+    contenedor2.classList.add("row", "justify-content-center")
+
+    let contenedor21 = document.createElement("div")
+    contenedor21.classList.add("col", "mt-2")
+
+    let btn1 = document.createElement("button")
+    btn1.classList.add("btn")
+    btn1.textContent= "+"
+    btn1.style.cssText =styleBtn
+    btn1.setAttribute=("marcador", info.id)
+    btn1.addEventListener('click', anadirProductoAlCarrito);
+    
+    contenedor21.appendChild(btn1)
+    contenedor1.appendChild(contenedor11)
+    contenedor2.appendChild(contenedor21)
+    prueba[i].appendChild(contenedor1)
+    prueba[i].appendChild(contenedor2)
     i++
     })
 
-    for (const card of prueba) {
-        console.log(card.innerHTML)
+    const getSectionMenu = document.getElementsByClassName("container")
+    console.log(getSectionMenu)
+
+    let DOMCarrito = document.createElement("div")
+    DOMCarrito.classList.add("row", "text-center")
+
+    let mostradorCarrito = document.createElement("div")
+    mostradorCarrito.innerHTML = "<h2>Carrito</h2>"
+
+    DOMCarrito.appendChild(mostradorCarrito)
+    getSectionMenu[1].appendChild(DOMCarrito)
+
+    let listaItems = document.createElement("ul")
+    listaItems.classList.add("list-group")
+    listaItems.id = "carrito"
+
+    let totalItem = document.createElement("p")
+    totalItem.classList.add("text-right")
+    totalItem.id = "carrito"
+     
+    totalItem.innerHTML = "Total:"
+
+
+    let botonVaciar = document.createElement("button")
+    botonVaciar.classList.add("btn", "btn-danger")
+    botonVaciar.id ="boton-vaciar"
+    botonVaciar.innerText = "Vaciar"
+
+    getSectionMenu[1].appendChild(botonVaciar)
+
+
+    function anadirProductoAlCarrito(evento) {
+        carrito.push(evento.target.getAttribute('marcador'))
+        mostrarCarrito();
+    
     }
 
+    function mostrarCarrito() {
+        mostradorCarrito.textContent = '';
+        // Quitamos los duplicados
+        const carritoSinDuplicados = [...new Set(carrito)];
+        // Generamos los Nodos a partir de carrito
+        carritoSinDuplicados.forEach((item) => {
+            // Obtenemos el item que necesitamos de la variable base de datos
+            const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                // ¿Coincide las id? Solo puede existir un caso
+                return itemBaseDatos.id === parseInt(item);
+            });
+            // Cuenta el número de veces que se repite el producto
+            const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+                // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+                return itemId === item ? total += 1 : total;
+            }, 0);
+            // Creamos el nodo del item del carrito
+            const miNodo = document.createElement('li');
+            miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+            miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+            // Boton de borrar
+            const miBoton = document.createElement('button');
+            miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+            miBoton.textContent = 'X';
+            miBoton.style.marginLeft = '1rem';
+            miBoton.dataset.item = item;
+            miBoton.addEventListener('click', borrarItemCarrito);
+            // Mezclamos nodos
+            miNodo.appendChild(miBoton);
+            mostradorCarrito.appendChild(miNodo);
+        });
+    }
+
+    function borrarItemCarrito(evento) {
+        // Obtenemos el producto ID que hay en el boton pulsado
+        const id = evento.target.dataset.item;
+        // Borramos todos los productos
+        carrito = carrito.filter((carritoId) => {
+            return carritoId !== id;
+        });
+        // volvemos a renderizar
+        mostrarCarrito();
+    }
+
+    function calcularTotal() {
+        // Recorremos el array del carrito 
+        return carrito.reduce((total, item) => {
+            // De cada elemento obtenemos su precio
+            const miItem = baseDeDatos.filter((itemBaseDatos) => {
+                return itemBaseDatos.id === parseInt(item);
+            });
+            // Los sumamos al total
+            return total + miItem[0].precio;
+        }, 0).toFixed(2);
+    }
+
+    function vaciarCarrito() {
+        // Limpiamos los productos guardados
+        carrito = [];
+        // Renderizamos los cambios
+        mostrarCarrito();
+    }
+
+    botonVaciar.addEventListener('click', vaciarCarrito);
+}
 
     // Evento para agregar prodcutos al carrito
 
@@ -95,7 +226,7 @@ function comprar() {
     //const DOMitems = document.querySelector()
 
 
- }
+
 const boton = document.getElementById("botonComprar")
 
 boton.addEventListener("Click", comprar)
