@@ -18,18 +18,29 @@ const baseDeDatos = [
     },
     {
         id: 2,
-        nombre: 'Waffle',
+        nombre: 'Souffle',
         precio: 15,
     },
     {
         id: 3,
-        nombre: 'Souffle',
+        nombre: 'Waffle',
         precio: 21,
     }
 
 ];
 
 const divisa = '$';
+
+const styleBtn = `
+    font-family: "Courgette";
+    font-size: 1vmin;
+    width: 4rem;
+    height: 3vmin;
+    border-radius: 2px;
+    background-color: rgb(233, 153, 48);
+    cursor: pointer`;
+
+
 
 function comprar() {
     
@@ -40,11 +51,13 @@ function comprar() {
     let i = 0
     baseDeDatos.forEach((info) => {
     let contenedor = document.createElement("div")
+    contenedor.classList.add("card", "m-2", "shadow-lg")
     let btn = document.createElement("button")
     btn.classList.add("btn", "btn-primary")
     btn.textContent= "+"
+    btn.style.cssText =styleBtn
     contenedor.innerHTML = `<h4> ${info.nombre}</h4>
-                            <b> Precio: $${info.precio}</b>`;
+                            <p> Precio: $${info.precio}</p>`;
     
     console.log(info)
     prueba[i].appendChild(contenedor)
