@@ -64,6 +64,41 @@ let carrito = []
 
 function comprar() {
     
+    const getSectionMenu = document.getElementsByClassName("container")
+    console.log(getSectionMenu)
+
+    let DOMCarrito = document.createElement("div")
+    DOMCarrito.classList.add("row", "text-center")
+    DOMCarrito.innerHTML = "<h2>Carrito</h2>"
+
+    let mostradorCarrito = document.createElement("div")
+    mostradorCarrito.innerHTML = ""
+
+    let listaItems = document.createElement("ul")
+    listaItems.classList.add("list-group")
+    listaItems.id = "carrito"
+
+    let totalItem = document.createElement("p")
+    totalItem.classList.add("text-right")
+    totalItem.id = "carrito"   
+    totalItem.innerHTML = "Total: <span id=total></span>&#36; "
+
+    DOMCarrito.appendChild(mostradorCarrito)
+    DOMCarrito.appendChild(listaItems)
+    DOMCarrito.appendChild(totalItem)
+
+    
+    getSectionMenu[1].appendChild(DOMCarrito)
+
+  
+
+    let botonVaciar = document.createElement("button")
+    botonVaciar.classList.add("btn", "btn-danger")
+    botonVaciar.id ="boton-vaciar"
+    botonVaciar.innerText = "Vaciar"
+
+    getSectionMenu[1].appendChild(botonVaciar)
+
     //Crear el HTML para meter el valor de los precios y el botón de cantidad para cada producto mostrado
     // Crear estrucutra HTML para visualizar el carrito
     const prueba = document.getElementsByClassName("Card" )
@@ -84,11 +119,11 @@ function comprar() {
     contenedor21.classList.add("col", "mt-2")
 
     let btn1 = document.createElement("button")
-    btn1.classList.add("btn")
-    btn1.textContent= "+"
-    btn1.style.cssText =styleBtn
-    btn1.setAttribute=("marcador", info.id)
-    btn1.addEventListener('click', anadirProductoAlCarrito);
+    btn1.classList.add("btn");
+    btn1.textContent= "+";
+    btn1.style.cssText =styleBtn;
+    btn1.setAttribute("marcador", info.id);
+    btn1.addEventListener("click", anadirProductoAlCarrito);
     
     contenedor21.appendChild(btn1)
     contenedor1.appendChild(contenedor11)
@@ -96,39 +131,9 @@ function comprar() {
     prueba[i].appendChild(contenedor1)
     prueba[i].appendChild(contenedor2)
     i++
+
     })
-
-    const getSectionMenu = document.getElementsByClassName("container")
-    console.log(getSectionMenu)
-
-    let DOMCarrito = document.createElement("div")
-    DOMCarrito.classList.add("row", "text-center")
-
-    let mostradorCarrito = document.createElement("div")
-    mostradorCarrito.innerHTML = "<h2>Carrito</h2>"
-
-    DOMCarrito.appendChild(mostradorCarrito)
-    getSectionMenu[1].appendChild(DOMCarrito)
-
-    let listaItems = document.createElement("ul")
-    listaItems.classList.add("list-group")
-    listaItems.id = "carrito"
-
-    let totalItem = document.createElement("p")
-    totalItem.classList.add("text-right")
-    totalItem.id = "carrito"
-     
-    totalItem.innerHTML = "Total:"
-
-
-    let botonVaciar = document.createElement("button")
-    botonVaciar.classList.add("btn", "btn-danger")
-    botonVaciar.id ="boton-vaciar"
-    botonVaciar.innerText = "Vaciar"
-
-    getSectionMenu[1].appendChild(botonVaciar)
-
-
+    console.log(info)
     function anadirProductoAlCarrito(evento) {
         carrito.push(evento.target.getAttribute('marcador'))
         mostrarCarrito();
@@ -146,6 +151,9 @@ function comprar() {
                 // ¿Coincide las id? Solo puede existir un caso
                 return itemBaseDatos.id === parseInt(item);
             });
+
+            console.log(miItem)
+            console.log(baseDeDatos)
             // Cuenta el número de veces que se repite el producto
             const numeroUnidadesItem = carrito.reduce((total, itemId) => {
                 // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
@@ -198,7 +206,8 @@ function comprar() {
         mostrarCarrito();
     }
 
-    botonVaciar.addEventListener('click', vaciarCarrito);
+    botonVaciar.addEventListener("click", vaciarCarrito);
+    mostrarCarrito();
 }
 
     // Evento para agregar prodcutos al carrito
