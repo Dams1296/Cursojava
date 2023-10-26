@@ -10,9 +10,85 @@
 
 //Donde agregar una función???
 
-function comprar() {
+const baseDeDatos = [
+    {
+        id: 1,
+        nombre: 'Hotcake',
+        precio: 10,
+    },
+    {
+        id: 2,
+        nombre: 'Waffle',
+        precio: 15,
+    },
+    {
+        id: 3,
+        nombre: 'Souffle',
+        precio: 21,
+    }
 
-let nombreCliente = prompt("Ingrese su nombre de cliente")
+];
+
+const divisa = '$';
+
+function comprar() {
+    
+    //Crear el HTML para meter el valor de los precios y el botón de cantidad para cada producto mostrado
+    // Crear estrucutra HTML para visualizar el carrito
+    const prueba = document.getElementsByClassName("Card" )
+    console.log(prueba)
+    let i = 0
+    baseDeDatos.forEach((info) => {
+    let contenedor = document.createElement("div")
+    let btn = document.createElement("button")
+    btn.classList.add("btn", "btn-primary")
+    btn.textContent= "+"
+    contenedor.innerHTML = `<h4> ${info.nombre}</h4>
+                            <b> Precio: $${info.precio}</b>`;
+    
+    console.log(info)
+    prueba[i].appendChild(contenedor)
+    prueba[i].appendChild(btn)
+    i++
+    })
+
+    for (const card of prueba) {
+        console.log(card.innerHTML)
+    }
+
+
+    // Evento para agregar prodcutos al carrito
+
+
+    //Dibuja los productos agregados al carrito
+
+
+    //Evento para borrar un producto del carrito
+
+
+
+    //Calcula el precio total teniendo en cuenta los productos repetidos
+
+    //Varia el carrito y volver a dibujarlo
+
+    //Eventos
+
+    //Inicio
+
+
+
+    //let carrito = [];
+   
+    //const DOMitems = document.querySelector()
+
+
+ }
+const boton = document.getElementById("botonComprar")
+
+boton.addEventListener("Click", comprar)
+
+
+/*let nombreCliente = prompt("Ingrese su nombre de cliente")
 
 function tieneValoresNumericos(cadena) {
     // Utilizamos una expresión regular para buscar valores numéricos en la cadena
@@ -112,12 +188,8 @@ if (pagoPregunta.toLowerCase().trim() == "si"){
     alert("Usted a comprado " + cantidad + " " + producto + ", gracias por su preferencia")
 } else if (pagoPregunta.toLowerCase == "no") {
     alert("Gracias por visitarnos")
-}*/
+}
 
 alert("GRACIAS POR SU COMPRA")
+*/
 
-
-}
-const boton = document.getElementById("botonComprar")
-
-boton.addEventListener("Click", comprar)
