@@ -58,6 +58,22 @@ const styleBtn = `
     margin: 0px;
     padding: 0px;
     cursor: pointer`;
+
+const styleBtn2 = `
+    font-family: "Courgette";
+    font-size: 4vmin;
+    font-weight: 600;
+    font-color: white;
+    width: 3rem;
+    height: 5vmin;
+    border-radius: 5px;
+    background-color: rgb(233, 153, 48);
+    align-items: center;
+    justify-content: center;
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer`;
     
 
 let carrito = []
@@ -69,20 +85,20 @@ function comprar() {
 
     let DOMCarrito = document.createElement("div")
     DOMCarrito.classList.add("row", "text-center")
-    DOMCarrito.innerHTML = "<h2>Carrito</h2>"
+    
 
     let mostradorCarrito = document.createElement("div")
-    mostradorCarrito.innerHTML = ""
+    mostradorCarrito.innerHTML = "<h2>Carrito</h2>"
 
     let listaItems = document.createElement("ul")
     listaItems.classList.add("list-group")
     listaItems.id = "carrito"
+    listaItems.innerText = ""
 
     let totalItem = document.createElement("p")
-    totalItem.classList.add("text-right")
-    totalItem.id = "carrito"   
-    totalItem.innerHTML = "Total: <span id=total></span>&#36; "
-
+    totalItem.classList.add("text-right") 
+    totalItem.innerHTML = "Total: <span id=total>0.00</span>&#36; "
+    
     DOMCarrito.appendChild(mostradorCarrito)
     DOMCarrito.appendChild(listaItems)
     DOMCarrito.appendChild(totalItem)
@@ -90,7 +106,8 @@ function comprar() {
     
     getSectionMenu[1].appendChild(DOMCarrito)
 
-  
+    let precioTotal = document.getElementById("total")
+    console.log(precioTotal)
 
     let botonVaciar = document.createElement("button")
     botonVaciar.classList.add("btn", "btn-danger")
@@ -133,15 +150,15 @@ function comprar() {
     i++
 
     })
-    console.log(info)
+
     function anadirProductoAlCarrito(evento) {
-        carrito.push(evento.target.getAttribute('marcador'))
+        carrito.push(evento.target.getAttribute("marcador"))
         mostrarCarrito();
     
     }
 
     function mostrarCarrito() {
-        mostradorCarrito.textContent = '';
+        listaItems.textContent = '';
         // Quitamos los duplicados
         const carritoSinDuplicados = [...new Set(carrito)];
         // Generamos los Nodos a partir de carrito
@@ -151,29 +168,28 @@ function comprar() {
                 // ¿Coincide las id? Solo puede existir un caso
                 return itemBaseDatos.id === parseInt(item);
             });
-
-            console.log(miItem)
-            console.log(baseDeDatos)
             // Cuenta el número de veces que se repite el producto
             const numeroUnidadesItem = carrito.reduce((total, itemId) => {
                 // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
                 return itemId === item ? total += 1 : total;
             }, 0);
             // Creamos el nodo del item del carrito
-            const miNodo = document.createElement('li');
-            miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+            const miNodo = document.createElement("li");
+            miNodo.classList.add("list-group-item", "text-right", "mx-2");
             miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+            miNodo.style.backgroundImage = "rgb (233, 153, 48)";
             // Boton de borrar
-            const miBoton = document.createElement('button');
-            miBoton.classList.add('btn', 'btn-danger', 'mx-5');
-            miBoton.textContent = 'X';
-            miBoton.style.marginLeft = '1rem';
-            miBoton.dataset.item = item;
-            miBoton.addEventListener('click', borrarItemCarrito);
+            const BotonItem = document.createElement("button");
+            BotonItem.classList.add("btn", "btn-danger", "mx-3");
+            BotonItem.textContent = 'X';
+            BotonItem.style.cssText = styleBtn2;
+            BotonItem.dataset.item = item;
+            BotonItem.addEventListener("click", borrarItemCarrito);
             // Mezclamos nodos
-            miNodo.appendChild(miBoton);
-            mostradorCarrito.appendChild(miNodo);
+            miNodo.appendChild(BotonItem);
+            listaItems.appendChild(miNodo);
         });
+        precioTotal.textContent = calcularTotal()
     }
 
     function borrarItemCarrito(evento) {
@@ -186,6 +202,8 @@ function comprar() {
         // volvemos a renderizar
         mostrarCarrito();
     }
+   
+    
 
     function calcularTotal() {
         // Recorremos el array del carrito 
