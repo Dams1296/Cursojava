@@ -31,7 +31,7 @@ const baseDeDatos = [
 
 const divisa = '$';
 
-
+// Estilos de botones
 const styleCardBuy = `
     font-family: "Courgette";
     font-size: 6vmin;
@@ -77,11 +77,16 @@ const styleBtn2 = `
     
 
 let carrito = []
+const miLocalStorage = window.localStorage;
 
 function comprar() {
+    const borrarBoton = document.getElementById("botonComprar")
+    const parentBoton = document.getElementById("parentBtn")
+    parentBoton.removeChild(borrarBoton)
     
     const getSectionMenu = document.getElementsByClassName("container")
-    console.log(getSectionMenu)
+    
+
 
     let DOMCarrito = document.createElement("div")
     DOMCarrito.classList.add("row", "text-center")
@@ -93,7 +98,7 @@ function comprar() {
     let listaItems = document.createElement("ul")
     listaItems.classList.add("list-group")
     listaItems.id = "carrito"
-    listaItems.innerText = ""
+    
 
     let totalItem = document.createElement("p")
     totalItem.classList.add("text-right") 
@@ -107,19 +112,24 @@ function comprar() {
     getSectionMenu[1].appendChild(DOMCarrito)
 
     let precioTotal = document.getElementById("total")
-    console.log(precioTotal)
+
+    const divBtn = document.createElement("div")
+    divBtn.classList.add("row", "justify-content-center")
+
+    getSectionMenu[1].appendChild(divBtn)
+
 
     let botonVaciar = document.createElement("button")
     botonVaciar.classList.add("btn", "btn-danger")
     botonVaciar.id ="boton-vaciar"
     botonVaciar.innerText = "Vaciar"
 
-    getSectionMenu[1].appendChild(botonVaciar)
+    divBtn.appendChild(botonVaciar)
 
     //Crear el HTML para meter el valor de los precios y el botón de cantidad para cada producto mostrado
     // Crear estrucutra HTML para visualizar el carrito
     const prueba = document.getElementsByClassName("Card" )
-    console.log(prueba)
+    
     let i = 0
     baseDeDatos.forEach((info) => {
     let contenedor1 = document.createElement("div")
@@ -154,6 +164,7 @@ function comprar() {
     function anadirProductoAlCarrito(evento) {
         carrito.push(evento.target.getAttribute("marcador"))
         mostrarCarrito();
+        guardarCarritoEnLocalStorage();
     
     }
 
@@ -201,6 +212,7 @@ function comprar() {
         });
         // volvemos a renderizar
         mostrarCarrito();
+        guardarCarritoEnLocalStorage();
     }
    
     
@@ -222,37 +234,29 @@ function comprar() {
         carrito = [];
         // Renderizamos los cambios
         mostrarCarrito();
+        localStorage.clear();
     }
+    function guardarCarritoEnLocalStorage () {
+        miLocalStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    function cargarCarritoDeLocalStorage () {
+        // ¿Existe un carrito previo guardado en LocalStorage?
+        if (miLocalStorage.getItem("carrito") !== null) {
+             // Carga la información
+            carrito = JSON.parse(miLocalStorage.getItem("carrito"));
+        }
+    }
+
+  
 
     botonVaciar.addEventListener("click", vaciarCarrito);
     mostrarCarrito();
-}
-
-    // Evento para agregar prodcutos al carrito
-
-
-    //Dibuja los productos agregados al carrito
+    cargarCarritoDeLocalStorage();
+    
 
 
-    //Evento para borrar un producto del carrito
-
-
-
-    //Calcula el precio total teniendo en cuenta los productos repetidos
-
-    //Varia el carrito y volver a dibujarlo
-
-    //Eventos
-
-    //Inicio
-
-
-
-    //let carrito = [];
-   
-    //const DOMitems = document.querySelector()
-
-
+ }
 
 const boton = document.getElementById("botonComprar")
 
